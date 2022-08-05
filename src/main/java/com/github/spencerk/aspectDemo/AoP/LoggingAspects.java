@@ -1,5 +1,7 @@
 package com.github.spencerk.aspectDemo.AoP;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.AfterReturning;
@@ -12,18 +14,19 @@ import org.springframework.stereotype.Component;
 @Component
 @EnableAspectJAutoProxy
 public class LoggingAspects {
+    private static final Logger logger = LogManager.getLogger();
     @Before("execution(* com.github.spencerk.aspectDemo.prompt.*.*(..))")
     public void logEntry(JoinPoint joinPoint) {
-        System.out.printf("Entry: %s -> %s\n", joinPoint.getTarget(), joinPoint.getSignature());
+        logger.info(String.format("Entry: %s -> %s\n", joinPoint.getTarget(), joinPoint.getSignature()));
     }
 
     @After("execution(* com.github.spencerk.aspectDemo.prompt.*.*(..))")
     public void logExit(JoinPoint joinPoint) {
-        System.out.printf("Exit from: %s -> %s\n", joinPoint.getTarget(), joinPoint.getSignature());
+        logger.info(String.format("Exit from: %s -> %s\n", joinPoint.getTarget(), joinPoint.getSignature()));
     }
 
     @AfterReturning(pointcut="execution(* com.github.spencerk.aspectDemo.prompt.*.*(..))", returning="returned")
     public void logReturn(Object returned) {
-        System.out.printf("Return: %s\n", returned);
+        logger.info(String.format("Return: %s\n", returned));
     }
 }

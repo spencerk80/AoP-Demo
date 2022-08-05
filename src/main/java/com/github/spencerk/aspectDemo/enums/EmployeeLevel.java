@@ -1,4 +1,4 @@
-package com.github.spencerk.aspectDemo;
+package com.github.spencerk.aspectDemo.enums;
 
 public enum EmployeeLevel {
     TEAM_MEMBER,

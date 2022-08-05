@@ -1,6 +1,6 @@
 package com.github.spencerk.aspectDemo.model;
 
-import com.github.spencerk.aspectDemo.EmployeeLevel;
+import com.github.spencerk.aspectDemo.enums.EmployeeLevel;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 

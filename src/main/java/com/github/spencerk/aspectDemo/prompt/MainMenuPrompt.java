@@ -1,4 +1,4 @@
-package com.github.spencerk.aspectDemo.Prompt;
+package com.github.spencerk.aspectDemo.prompt;
 
 import com.github.spencerk.aspectDemo.context.AppContext;
 import com.github.spencerk.aspectDemo.util.UserInput;
@@ -19,13 +19,13 @@ public class MainMenuPrompt implements Prompt {
 
         switch(input) {
             case '1':
-                return AppContext.getContext().getBean(ListEmployeesPrompt.class);
+                return (Prompt) AppContext.getContext().getBean("listEmployeesPrompt");
             case '2':
-                return AppContext.getContext().getBean(AddEmployeePrompt.class);
+                return (Prompt) AppContext.getContext().getBean("addEmployeePrompt");
             case '3':
-                return AppContext.getContext().getBean(EditEmployeePrompt.class);
+                return (Prompt) AppContext.getContext().getBean("editEmployeePrompt");
             case '4':
-                return AppContext.getContext().getBean(DeleteEmployeePrompt.class);
+                return (Prompt) AppContext.getContext().getBean("deleteEmployeePrompt");
         }
 
         //Case 5 - quit

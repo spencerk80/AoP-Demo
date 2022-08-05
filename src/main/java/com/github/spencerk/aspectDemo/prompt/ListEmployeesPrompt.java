@@ -1,11 +1,11 @@
-package com.github.spencerk.aspectDemo.Prompt;
+package com.github.spencerk.aspectDemo.prompt;
 
 import com.github.spencerk.aspectDemo.context.AppContext;
 import com.github.spencerk.aspectDemo.dao.EmployeeDao;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-import java.util.List;
-
+@Component
 public class ListEmployeesPrompt implements Prompt {
     @Autowired
     private EmployeeDao     dao;
@@ -16,6 +16,6 @@ public class ListEmployeesPrompt implements Prompt {
 
         dao.getAll().forEach(System.out::println);
 
-        return AppContext.getContext().getBean(MainMenuPrompt.class);
+        return (Prompt) AppContext.getContext().getBean("mainMenuPrompt");
     }
 }

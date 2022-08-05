@@ -1,11 +1,13 @@
-package com.github.spencerk.aspectDemo.Prompt;
+package com.github.spencerk.aspectDemo.prompt;
 
 import com.github.spencerk.aspectDemo.context.AppContext;
 import com.github.spencerk.aspectDemo.dao.EmployeeDao;
 import com.github.spencerk.aspectDemo.exception.NonUniqueIdException;
 import com.github.spencerk.aspectDemo.util.UserInput;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class DeleteEmployeePrompt implements Prompt {
     @Autowired
     private EmployeeDao dao;
@@ -20,6 +22,6 @@ public class DeleteEmployeePrompt implements Prompt {
             System.err.println(e.getMessage());
         }
 
-        return AppContext.getContext().getBean(MainMenuPrompt.class);
+        return (Prompt) AppContext.getContext().getBean("mainMenuPrompt");
     }
 }

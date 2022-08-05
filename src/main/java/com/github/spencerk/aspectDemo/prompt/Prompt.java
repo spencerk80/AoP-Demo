@@ -1,4 +1,4 @@
-package com.github.spencerk.aspectDemo.Prompt;
+package com.github.spencerk.aspectDemo.prompt;
 
 public interface Prompt {
     Prompt run();

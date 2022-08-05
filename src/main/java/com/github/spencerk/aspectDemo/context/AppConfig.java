@@ -2,6 +2,7 @@ package com.github.spencerk.aspectDemo.context;
 
 import com.github.spencerk.aspectDemo.Prompt.WelcomePrompt;
 import com.github.spencerk.aspectDemo.dao.EmployeeDao;
+import com.github.spencerk.aspectDemo.dao.EmployeeMemDao;
 import com.github.spencerk.aspectDemo.model.Employee;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -24,7 +25,7 @@ public class AppConfig {
      *********************************************************/
     @Bean
     public EmployeeDao getDao() {
-        return null;
+        return new EmployeeMemDao();
     }
 
     /*********************************************************

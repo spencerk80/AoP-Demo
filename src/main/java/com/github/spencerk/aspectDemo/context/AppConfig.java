@@ -1,5 +1,6 @@
 package com.github.spencerk.aspectDemo.context;
 
+import com.github.spencerk.aspectDemo.Prompt.MainMenuPrompt;
 import com.github.spencerk.aspectDemo.Prompt.WelcomePrompt;
 import com.github.spencerk.aspectDemo.dao.EmployeeDao;
 import com.github.spencerk.aspectDemo.dao.EmployeeMemDao;
@@ -7,6 +8,8 @@ import com.github.spencerk.aspectDemo.model.Employee;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+
+import java.util.Scanner;
 
 @Configuration
 @ComponentScan
@@ -36,4 +39,15 @@ public class AppConfig {
         return new WelcomePrompt();
     }
 
+    @Bean
+    public MainMenuPrompt getMainMenuPrompt() {
+        return new MainMenuPrompt();
+    }
+    /*********************************************************
+     * Misc
+     *********************************************************/
+    @Bean
+    public Scanner getScanner() {
+        return new Scanner(System.in);
+    }
 }

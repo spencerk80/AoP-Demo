@@ -3,21 +3,28 @@ package com.github.spencerk.aspectDemo.Prompt;
 import com.github.spencerk.aspectDemo.EmployeeLevel;
 import com.github.spencerk.aspectDemo.context.AppContext;
 import com.github.spencerk.aspectDemo.dao.EmployeeDao;
+import com.github.spencerk.aspectDemo.exception.NonUniqueIdException;
 import com.github.spencerk.aspectDemo.model.Employee;
 import com.github.spencerk.aspectDemo.util.UserInput;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public class AddEmployeePrompt implements Prompt {
+import java.time.temporal.Temporal;
+
+public class EditEmployeePrompt implements Prompt {
     @Autowired
     private EmployeeDao dao;
 
     @Override
     public Prompt run() {
-        Employee    employee    = AppContext.getContext().getBean(Employee.class);
-        String      zip,
-                    phoneNumber,
-                    email,
-                    level;
+        Employee employee;
+        String zip,
+                phoneNumber,
+                email,
+                level;
+
+        employee = selectEmployee();
+
+        if(employee == null) return AppContext.getContext().getBean(MainMenuPrompt.class);
 
         employee.setFname(UserInput.getString("Enter employee firstname."));
         employee.setLname(UserInput.getString("Enter employee lastname."));
@@ -27,26 +34,39 @@ public class AddEmployeePrompt implements Prompt {
 
         do {
             zip = UserInput.getString("Enter employee zip code");
-        } while( ! zip.matches("\\b\\d{5}\\b"));
+        } while (!zip.matches("\\b\\d{5}\\b"));
 
         employee.setZip(zip);
 
         do {
             phoneNumber = UserInput.formatPhoneNumber(UserInput.getString("Enter employee phoneNumber"));
-        } while( ! phoneNumber.matches("\\(\\d{3}\\) \\d{3} \\d{4}"));
+        } while (!phoneNumber.matches("\\(\\d{3}\\) \\d{3} \\d{4}"));
 
         employee.setPhoneNumber(phoneNumber);
 
         do {
             email = UserInput.getString("Enter employee email address.");
-        } while( ! email.matches(".+@.+\\.[a-z]{3}\\b"));
+        } while (!email.matches(".+@.+\\.[a-z]{3}\\b"));
 
         employee.setEmail(email);
         level = UserInput.getString("Enter employee level.", "team_member", "shift_lead", "manager");
         employee.setEmployeeLevel(EmployeeLevel.valueOf(level.toUpperCase()));
 
-        dao.saveEmployee(employee);
+        dao.updateEmployee(employee);
 
         return AppContext.getContext().getBean(MainMenuPrompt.class);
+    }
+
+    private Employee selectEmployee() {
+        String      id          = UserInput.getString("Enter the id of the employee to be edited");
+        Employee    employee    = null;
+
+        try {
+            employee = dao.getEmployee(id);
+        } catch(NonUniqueIdException e) {
+            System.err.println(e.getMessage());
+        }
+
+        return employee;
     }
 }

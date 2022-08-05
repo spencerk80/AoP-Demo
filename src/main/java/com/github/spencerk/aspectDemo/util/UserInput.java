@@ -37,4 +37,10 @@ public class UserInput {
 
         return true;
     }
+
+    public static String formatPhoneNumber(String input) {
+        if( ! input.matches("\\d{10}")) return input;
+
+        return String.format("(%s) %s %s", input.substring(0,3), input.substring(3, 6), input.substring(6));
+    }
 }

@@ -9,7 +9,7 @@ import java.util.UUID;
 public interface EmployeeDao {
     List<Employee> getAll();
     void saveEmployee(Employee employee);
-    Employee getEmployee(UUID id) throws NonUniqueIdException;
+    Employee getEmployee(String id) throws NonUniqueIdException;
     void updateEmployee(Employee employee);
-    void deleteEmployee(UUID id) throws NonUniqueIdException;
+    void deleteEmployee(String id) throws NonUniqueIdException;
 }

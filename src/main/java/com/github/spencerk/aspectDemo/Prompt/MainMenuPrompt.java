@@ -23,9 +23,9 @@ public class MainMenuPrompt implements Prompt {
             case '2':
                 return AppContext.getContext().getBean(AddEmployeePrompt.class);
             case '3':
-                return null;
+                return AppContext.getContext().getBean(EditEmployeePrompt.class);
             case '4':
-                return null;
+                return AppContext.getContext().getBean(DeleteEmployeePrompt.class);
         }
 
         //Case 5 - quit

@@ -7,13 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 
 public class ListEmployeesPrompt implements Prompt {
-
+    @Autowired
     private EmployeeDao     dao;
 
-    @Autowired
-    public ListEmployeesPrompt(EmployeeDao dao) {
-        this.dao = dao;
-    }
 
     @Override
     public Prompt run() {

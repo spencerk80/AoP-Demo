@@ -28,7 +28,7 @@ public class EmployeeMemDao implements EmployeeDao {
     }
 
     @Override
-    public Employee getEmployee(UUID id) throws NonUniqueIdException {
+    public Employee getEmployee(String id) throws NonUniqueIdException {
         Employee foundEmployee = null;
 
         for(Employee e : employees)
@@ -51,7 +51,7 @@ public class EmployeeMemDao implements EmployeeDao {
     }
 
     @Override
-    public void deleteEmployee(UUID id) throws NonUniqueIdException {
+    public void deleteEmployee(String id) throws NonUniqueIdException {
         Employee foundEmployee = getEmployee(id);
 
         if(foundEmployee != null) employees.remove(foundEmployee);

@@ -18,6 +18,11 @@ public class EmployeeMemDao implements EmployeeDao {
     }
 
     @Override
+    public List<Employee> getAll() {
+        return employees;
+    }
+
+    @Override
     public void saveEmployee(Employee employee) {
         if( ! employees.contains(employee)) employees.add(employee);
     }

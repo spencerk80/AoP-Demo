@@ -32,6 +32,7 @@ public class UserInput {
     }
 
     private static boolean arrayNotContains(Object[] arr, Object val) {
+        if(arr.length == 0) return false;
         for(Object o : arr) if(o.equals(val)) return false;
 
         return true;

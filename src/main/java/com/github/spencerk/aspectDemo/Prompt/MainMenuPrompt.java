@@ -10,8 +10,9 @@ public class MainMenuPrompt implements Prompt {
     public Prompt run() {
         char input;
 
+        System.out.println(/*CLI formatting new line*/);
         input = UserInput.getChar(
-                "What would you like to do?\n1: Show employee info\n2: Add an employee\n 3: Edit an employee\n" +
+                "What would you like to do?\n1: Show employee info\n2: Add an employee\n3: Edit an employee\n" +
                         "4: Delete an employee\n5: Quit",
                 '1', '2', '3', '4', '5'
         );
@@ -20,7 +21,7 @@ public class MainMenuPrompt implements Prompt {
             case '1':
                 return AppContext.getContext().getBean(ListEmployeesPrompt.class);
             case '2':
-                return null;
+                return AppContext.getContext().getBean(AddEmployeePrompt.class);
             case '3':
                 return null;
             case '4':

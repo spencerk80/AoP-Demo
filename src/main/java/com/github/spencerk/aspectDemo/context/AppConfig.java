@@ -1,5 +1,6 @@
 package com.github.spencerk.aspectDemo.context;
 
+import com.github.spencerk.aspectDemo.Prompt.AddEmployeePrompt;
 import com.github.spencerk.aspectDemo.Prompt.ListEmployeesPrompt;
 import com.github.spencerk.aspectDemo.Prompt.MainMenuPrompt;
 import com.github.spencerk.aspectDemo.Prompt.WelcomePrompt;
@@ -48,6 +49,11 @@ public class AppConfig {
     @Bean
     public ListEmployeesPrompt getListEmployeePrompt() {
         return new ListEmployeesPrompt(getDao());
+    }
+
+    @Bean
+    public AddEmployeePrompt getAddEmployeePrompt() {
+        return new AddEmployeePrompt(getDao());
     }
 
     /*********************************************************
